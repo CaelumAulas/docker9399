@@ -1,5 +1,5 @@
-FROM ubuntu
+FROM openjdk:8-jdk-slim
 WORKDIR /app
 COPY springapp.jar .
-RUN apt-get update && apt-get install -y openjdk-8-jdk
+EXPOSE 8080
 ENTRYPOINT java -jar springapp.jar
