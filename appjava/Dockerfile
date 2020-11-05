@@ -1,5 +1,9 @@
 FROM openjdk:8-jdk-slim
 WORKDIR /app
-COPY springapp.jar .
+ARG JAR_FILE=springapp.jar
+COPY $JAR_FILE .
 EXPOSE 8080
-ENTRYPOINT java -jar springapp.jar
+
+ENV EXECUTAVEL=$JAR_FILE
+ENV STAGE=desenvolvimento
+ENTRYPOINT java -jar $EXECUTAVEL
