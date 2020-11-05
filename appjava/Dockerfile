@@ -1,4 +1,5 @@
-FROM openjdk:8-jdk-slim
+# FROM openjdk:8-jdk-slim
+FROM openjdk:8
 WORKDIR /app
 ARG JAR_FILE=springapp.jar
 COPY $JAR_FILE .
