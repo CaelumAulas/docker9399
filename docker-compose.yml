@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  appjava:
+    image: appjava
+    ports:
+      - "8090:8080"
+    networks:
+      - frontend
+    depends_on:
+      - mysql
+    restart: on-failure
+  mysql:
+    image: mysql:5.7
+    container_name: mysql_db
+    ports:
+      - "3000:3306"
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - "volume-db:/var/lib/mysql"
+    networks:
+      - frontend
+
+volumes:
+  volume-db:
+
+networks:
+  frontend:
+    driver: bridge
