@@ -15,14 +15,14 @@ jobs:
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:5})
 
-      - name: Build the tagged Docker image
+      - name: Build the tagged Vote Docker image
         run: cd desafio-voting-app/vote && docker build -t alefh/vote_docker9399:${{steps.vars.outputs.tag}} .
 
-      - name: Push the tagged Docker image
+      - name: Push the tagged Vote Docker image
         run: docker push alefh/vote_docker9399:${{steps.vars.outputs.tag}}
 
-      - name: Build the latest Docker image
-        run: docker build -t alefh/vote_docker9399:latest .
+      - name: Build the latest Vote Docker image
+        run: cd desafio-voting-app/vote && docker build -t alefh/vote_docker9399:latest .
 
-      - name: Push the latest Docker image
+      - name: Push the latest Vote Docker image
         run: docker push alefh/vote_docker9399:latest
