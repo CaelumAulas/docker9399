@@ -4,7 +4,7 @@ services:
   vote:
     image: alefh/docker9399_vote
     volumes:
-      - ./vote:/app
+      - vote-data:/app
     ports:
       - "5000:80"
     networks:
@@ -18,15 +18,15 @@ services:
         delay: 10s
       restart_policy:
         condition: on-failure
-        max_attemps: 4
+        max_attempts: 4
         delay: 5s
       placement:
-        constraint: [node.role == manager]
+        constraints: [node.role == manager]
 
   result:
     image: alefh/docker9399_result
     volumes:
-      - ./result:/app
+      - result-data:/app
     ports:
       - "5001:80"
       - "5858:5858"
@@ -63,6 +63,8 @@ services:
 
 volumes:
   db-data:
+  result-data:
+  vote-data:
 
 networks:
   frontend:
